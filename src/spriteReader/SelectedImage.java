@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -42,9 +43,18 @@ public class SelectedImage{
 		
 		
 		
+		JPanel tools = new JPanel(new BorderLayout());
+		tools.setPreferredSize(new Dimension(300,50));
+		JButton clear = new JButton("CLEAR");
+		clear.addActionListener(e->{
+			text.setText("");
+		});
+		tools.add(clear, BorderLayout.CENTER);
 		
 		
-
+		
+		optionPane.add(tools, BorderLayout.NORTH);
+		
 
 		
 		frame.add(optionScrollPane, BorderLayout.WEST);

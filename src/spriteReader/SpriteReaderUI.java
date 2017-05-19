@@ -25,7 +25,6 @@ public class SpriteReaderUI extends JPanel{
 	void panel(){
 		JFrame frame = new JFrame("SPRITE READER");
 		JScrollPane sp = new JScrollPane(this,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setLayout(new GridLayout(listedFiles.length, 1));
 		for(File f : listedFiles){
 			JButton b = new JButton(f.toString());
@@ -51,9 +50,7 @@ public class SpriteReaderUI extends JPanel{
 		frame.pack();
 		frame.setVisible(true);
 		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		repaint();
-		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 	}
 	
 }
