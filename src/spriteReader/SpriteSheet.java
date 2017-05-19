@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 public class SpriteSheet extends JPanel {
 	private final int WIDTH;
 	private final int HEIGHT;
-	private final String imageName;
+	private String imageName;
 	private boolean[][] isAlpha;
 	private int x1, x2, y1, y2;
 	private BufferedImage img;
@@ -18,7 +18,9 @@ public class SpriteSheet extends JPanel {
 	  	this.img = img;
 		WIDTH = img.getWidth();
 		HEIGHT = img.getHeight();
-		imageName = JOptionPane.showInputDialog("What is the image name");
+		while(imageName == null || imageName.trim().equals("")){
+			imageName = JOptionPane.showInputDialog("What is the image name");
+		}
 		isAlpha = new boolean[WIDTH][HEIGHT];
 		for( int i = 0; i < isAlpha.length; i++ ){
 			for( int j = 0; j < isAlpha[0].length; j++ ){
@@ -30,7 +32,7 @@ public class SpriteSheet extends JPanel {
 			}
 		}
   }
-  String algroForBox(int x, int y) throws SpriteReaderException{
+  String algroForBox(int x, int y){
 		//origins will expand outwards
 		x1 = x;
 		y1 = y;
@@ -48,25 +50,23 @@ public class SpriteSheet extends JPanel {
 			expandBottom = false;
 			expandLeft = false;
 			expandRight = false;
+			System.out.println("x1 "+  x1 + " y1 " + y1 + " x2" + x2 + " y2" + y2 + " WIDTH" + WIDTH + " HEIGHT " + HEIGHT);
 			for(int index = x1; index <= x2; index++){ 	
-				if(!isAlpha[index][y1]){
+				if(!isAlpha[index][y1] && y1 > 0){
 					expandTop = true;
 				}
-				if(!isAlpha[index][y2]){
+				if(!isAlpha[index][y2] && y2 < HEIGHT-1){
 					expandBottom = true;
 				}
 			}
 
 			for(int index = y1; index <= y2; index++){	
-				if(!isAlpha[x1][index]){
+				if(!isAlpha[x1][index] && x1 > 0){
 					expandLeft = true;
 				}
-				if(!isAlpha[x2][index]){
+				if(!isAlpha[x2][index] && x2 < WIDTH-1){
 					expandRight = true;
 				}
-			}
-			if(x1<=0 || y1 <=0 || x2 >= WIDTH || y2 >= HEIGHT){
-				throw new SpriteReaderException();
 			}
 			if(expandTop){
 				y1--;

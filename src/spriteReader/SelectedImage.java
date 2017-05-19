@@ -29,7 +29,7 @@ public class SelectedImage{
 		scrollPane.getViewport().setPreferredSize(new Dimension(400, 400));
 		scrollPane.getViewport ().setScrollMode (JViewport.BACKINGSTORE_SCROLL_MODE );
 		scrollPane.getViewport ().setScrollMode (JViewport.SIMPLE_SCROLL_MODE );
-		
+
 
 		JPanel optionPane = new JPanel(new BorderLayout());
 		JTextArea text = new JTextArea(10,10);
@@ -40,9 +40,9 @@ public class SelectedImage{
 		optionScrollPane.setPreferredSize(new Dimension(300,400));
 		optionScrollPane.getViewport ().setScrollMode (JViewport.BACKINGSTORE_SCROLL_MODE );
 		optionScrollPane.getViewport ().setScrollMode (JViewport.SIMPLE_SCROLL_MODE );
-		
-		
-		
+
+
+
 		JPanel tools = new JPanel(new BorderLayout());
 		tools.setPreferredSize(new Dimension(300,50));
 		JButton clear = new JButton("CLEAR");
@@ -50,19 +50,18 @@ public class SelectedImage{
 			text.setText("");
 		});
 		tools.add(clear, BorderLayout.CENTER);
-		
-		
-		
-		optionPane.add(tools, BorderLayout.NORTH);
-		
 
-		
+
+
+		optionPane.add(tools, BorderLayout.NORTH);
+
+
+
 		frame.add(optionScrollPane, BorderLayout.WEST);
 		frame.add(scrollPane, BorderLayout.CENTER);
-		
-		
-		
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
@@ -71,15 +70,11 @@ public class SelectedImage{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String s;
-				try{
 				if((s = ss.algroForBox(e.getX(),e.getY())) != null){
-				  text.append(s+"\n");
-				  ss.repaint();
+					text.append(s+"\n");
+					ss.repaint();
 				}
-				}catch(Exception e2) {     JOptionPane.showMessageDialog(null,
-					     e2 ,
-					    "Inane error",
-					    JOptionPane.ERROR_MESSAGE);            }
+
 			}
 
 			@Override
