@@ -120,7 +120,7 @@ public class SpriteReaderUI{
 		}
 		for(File f : listedFilesDownloads){
 			JButton b = new JButton(f.toString());
-			b.setPreferredSize(new Dimension(400,100));
+			b.setPreferredSize(new Dimension(400,70));
 			b.addActionListener(e -> {
 				if(f.toString().substring(f.toString().length()-4).equalsIgnoreCase(".png")){
 					try{

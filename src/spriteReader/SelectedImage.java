@@ -25,7 +25,7 @@ public class SelectedImage{
 		JFrame frame = new JFrame("Selected Image");
 
 		SpriteSheet ss = new SpriteSheet(img);
-		JScrollPane scrollPane = new JScrollPane(ss);
+		JScrollPane scrollPane = new JScrollPane(ss, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.getViewport().setPreferredSize(new Dimension(400, 400));
 		scrollPane.getViewport ().setScrollMode (JViewport.BACKINGSTORE_SCROLL_MODE );
 		scrollPane.getViewport ().setScrollMode (JViewport.SIMPLE_SCROLL_MODE );
