@@ -1,13 +1,14 @@
 package spriteReader;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
@@ -24,14 +25,21 @@ public class SpriteReaderUI extends JPanel{
 	void panel(){
 		JFrame frame = new JFrame("SPRITE READER");
 		JScrollPane sp = new JScrollPane(this,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		//this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new GridLayout(listedFiles.length, 1));
 		for(File f : listedFiles){
 			JButton b = new JButton(f.toString());
 			b.addActionListener(e -> {
 				if(f.toString().substring(f.toString().length()-4).equalsIgnoreCase(".png")){
 					try{
 					new SelectedImage(ImageIO.read(f));
-					}catch(Exception a) { }
+					}catch(Exception a) { 
+					}
+				}else{
+					JOptionPane.showMessageDialog(frame,
+						    "Cannot open, only png",
+						    "Inane error",
+						    JOptionPane.ERROR_MESSAGE);
 				}
 			});
 			this.add(b);

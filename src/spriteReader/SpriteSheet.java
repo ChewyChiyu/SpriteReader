@@ -1,6 +1,5 @@
 package spriteReader;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -31,7 +30,7 @@ public class SpriteSheet extends JPanel {
 			}
 		}
   }
-  void algroForBox(int x, int y){
+  String algroForBox(int x, int y) throws SpriteReaderException{
 		//origins will expand outwards
 		x1 = x;
 		y1 = y;
@@ -66,6 +65,9 @@ public class SpriteSheet extends JPanel {
 					expandRight = true;
 				}
 			}
+			if(x1<=0 || y1 <=0 || x2 >= WIDTH || y2 >= HEIGHT){
+				throw new SpriteReaderException();
+			}
 			if(expandTop){
 				y1--;
 			}
@@ -81,10 +83,10 @@ public class SpriteSheet extends JPanel {
 		}
 
 		if(x2-x1==0&&y2-y1==0){
-			return;
+			return null;
 		}
 
-		System.out.println(imageName+".getSubimage("+x1+","+y1+","+(x2-x1)+","+(y2-y1)+");");
+		return (imageName+".getSubimage("+x1+","+y1+","+(x2-x1)+","+(y2-y1)+");");
 
 
 	}
