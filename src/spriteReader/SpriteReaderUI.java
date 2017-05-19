@@ -1,7 +1,5 @@
 package spriteReader;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
@@ -10,7 +8,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
@@ -19,11 +16,20 @@ public class SpriteReaderUI{
 
 	private JFrame masterFrame = new JFrame("Sprite Reader");
 	private ArrayList<File> possibleSelect = new ArrayList<File>();
-
+	//private HashSet<File> possibleSelect = new HashSet<File>();
 	public static void main(String[] args){
 		new SpriteReaderUI();
 	}
 	SpriteReaderUI(){
+		File[] listedDesktop = (new File(System.getProperty("user.home")+"/Desktop").listFiles());
+		for(File f : listedDesktop){
+			try{
+			if(f.getName().substring(f.getName().length()-4).equals(".png") && !possibleSelect.contains(f)){
+				possibleSelect.add(f);
+			}
+			}catch(Exception e) { } //file less than 4 
+		}
+		
 		processFiles(new File(System.getProperty("user.home")+"/Desktop"));
 		panel();
 	}
@@ -36,7 +42,7 @@ public class SpriteReaderUI{
 					processFiles(f);
 				}else{
 					//is a file
-					if(f.getName().substring(f.getName().length()-4).equals(".png"))
+					if(f.getName().substring(f.getName().length()-4).equals(".png")&& !possibleSelect.contains(f))
 						possibleSelect.add(f);
 				}
 
